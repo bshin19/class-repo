@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sushi Prompt - Unsolved</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+    // Write code here!
+
+    var sushiPref = confirm("Do you like Sushi?");
+    var sushiFav = "";
+    var birthyear = prompt("How old are you?");
+
+    if (sushiPref){
+      sushiFav = prompt("What is your favorite type of Sushi?");
+      document.write("You like " + sushiFav + " sushi. That's respectable. ")
+      if (birthyear>20){
+        document.write("Enjoy a complimentary sake on the house!")
+      } else {
+        document.write("Unfortunately, you're too young to enjoy a complimentary sake.")
+      }
+    } else {
+      sushiFav = prompt("What is your favorite food then, heathen?");
+      document.write("You like " + sushiFav + ". Unbelievably poor taste in food. ")
+      if (birthyear>20){
+        document.write("You're old enough to drink, but we don't serve your kind in these parts.")
+      } else {
+        document.write("You're so young, you've probably never had sushi in your life, let alone sake.")
+      }
+    }
+
+    </script>
+
+  </body>
+</html>

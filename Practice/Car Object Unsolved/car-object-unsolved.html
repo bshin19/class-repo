@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Object</title>
+  </head>
+  <body>
+
+    <script>
+
+      //Initialize Object with 5 properties
+      var car = {
+        make: "Honda",
+        model: "Fit",
+        color: "Blue Raspberry",
+        mileage: 3000,
+        isWorking: true,
+
+        //Describe driveToWork Function. Work is 8 miles away.
+        driveToWork: function() {
+
+          //Alert to mileage
+          alert("Old Mileage: " + this.mileage);
+
+          //Mileage increases by 8. Raises miles based on short trip.
+          this.mileage = this.mileage + 8;
+
+          //Alert to new mileage of 3008. 
+          alert("New mileage: " + this.mileage);
+        },
+
+        //Initialize new function improperly. Raises miles based on traveling around the world.
+        driveAroundWorld: function() {
+
+          //Display mileage before trip
+          alert("Old Mileage: " + this.mileage);
+
+          this.mileage = this.mileage + 24000;
+
+          //Display mileage after trip
+          alert("New Mileage: " + this.mileage);
+          alert("Car needs a tuneup!");
+
+          //Car is NOT working
+          this.isWorking = false;
+        },
+
+        /*Initalize function post-tuneup
+        car is functional now*/
+        getTuneUp: function() {
+          alert("Car is ready to go!");
+          this.isWorking = true;
+        },
+
+        //car is honked
+        honk: function() {
+          alert("Honk! Honk!");
+        },
+      };
+
+
+      // How would we log...
+
+      // The car's make?
+
+      console.log(car.make)
+
+      // The car's model?
+
+      console.log(car.model)
+
+      // The car's mileage?
+
+      console.log(car.mileage)
+
+      // How would we run the car's driveToWork method?
+
+      car.driveToWork()
+
+      // How would we run the car's driveAroundWorld method?
+
+      car.driveAroundWorld()
+
+      // How would we run the getTuneUp method?
+
+      car.getTuneUp()
+
+    </script>
+    
+  </body>
+</html>

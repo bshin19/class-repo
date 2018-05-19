@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Array Modifications</title>
+  </head>
+  <body>
+
+    <h1>Open the console to see the magic!</h1>
+
+    <script>
+
+    // Create an Array of Drinks with all capital letters
+    // ...
+    var drinks = ["Coke", "Pepsi", "Water", "Orange Juice"];
+    // ...
+    var looplength;
+
+    for (looplength = 0; looplength < drinks.length; looplength ++) {
+      drinks[looplength] = drinks[looplength].toLowerCase();
+      console.log(drinks[looplength]);
+
+      var drinkschar = drinks[looplength].charAt(0);
+      if (drinkschar == "C") {
+        console.log("Starts with a C!")
+      } else if (drinkschar == "o") {
+        console.log("Starts with an O!")
+      } else {
+        console.log("THIS CRAP STARTS WITH NOTHING TASTY")
+      }
+    }
+
+    var i = 0
+      
+    for (i; i<5; i++) {
+        document.write("I am" + i)
+        }
+
+    // Then modify each element of the array (individually) to make them lowercase
+    // ...
+
+
+    // CODE GOES HERE
+
+
+    // ...
+    </script>
+
+  </body>
+</html>
