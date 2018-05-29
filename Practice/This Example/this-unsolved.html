@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>This Example</title>
+</head>
+<body>
+
+  <h1>Make sure to view the console to see the action!</h1>
+
+  <script type="text/javascript">
+
+    // EXAMPLE ONE:
+    // --------------------------------------------------
+    // What is "this" going to print? 
+    /*This is going to print info for the whole webpage
+    because this is not within a container to limit
+    its scope.*/
+
+    console.log(this);
+
+
+    // EXAMPLE TWO:
+    // --------------------------------------------------
+    // What is "this" going to print?
+    /*This is going to print info for the whole webpage
+    because this is not within a container to limit
+    its scope.*/
+
+    function myFunction() {
+      console.log(this);
+    }
+    myFunction();
+
+    // EXAMPLE THREE (IMPORTANT):
+    // --------------------------------------------------
+    // What is "someObj.say()" going to print?
+    /*This is within the container "someObj"
+    and will therefore print someObj.name
+    which is equal to "Red Hat"*/
+
+    var someObj = {
+      name: "Red Hat",
+      say: function() {
+        console.log(this.name);
+      }
+    };
+    someObj.say();
+
+
+    // EXAMPLE FOUR (BONUS, TRICKY!):
+    // --------------------------------------------------
+    // What is "myObj.yell()" going to print? Why?
+    /*This is within the container "myObj"
+    and will print the entire object since the scope
+    of "this" is not limited with a parameter like "name"*/
+
+    var myObj = {
+      name: "",
+      yell: function() {
+        this.name = "Star Powerup";
+
+        var changeName = function(newName) {
+          this.name = newName;
+        };
+        changeName("Blue Shell");
+        console.log(this);
+      }
+    };
+    myObj.yell();
+
+
+    // EXAMPLE FIVE (BONUS, TRICKY!):
+    // --------------------------------------------------
+    // What is "myObj.yell()" going to print? Why?
+    /*This is within the container myObj, but 
+    thisObj is given all the parameters of myObj.
+    When thisObj is called for console log it displays
+    all the parameters of thisObj.*/
+
+    var myObj = {
+      name: "",
+      yell: function() {
+
+        // This line is important!
+        var thisObject = this;
+
+        this.name = "Star Powerup";
+        var changeName = function(newName) {
+          thisObject.name = newName;
+        };
+        changeName("Blue Shell");
+        console.log(thisObject.name);
+      }
+    };
+    myObj.yell();
+
+  </script>
+</body>
+</html>
