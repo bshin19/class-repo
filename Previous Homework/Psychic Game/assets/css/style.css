@@ -38,12 +38,6 @@ h1 {
     border-bottom: 1px solid #4aaaa5;
 }
 
-#mypic {
-    width: 250px;
-    height: 300px;
-    object-fit: cover;
-}
-
 .container {
     max-width: 90%;
     margin: 30px auto;
@@ -60,38 +54,15 @@ h1 {
     padding: 5px 0px;
 }
 
-.portfolioimages {
-    height: 200px;
-    width: 200px;
+.psyball {
+    max-height: 400px;
     object-fit: cover;
-    float: left;
-    padding: 20px;
 }
 
-.portfoliotext {
-    background-color: #4aaaa5;
-    color: #ffffff;
-    width: 160px;
-    max-height: 50px;
-    position: absolute;
-    margin: 150px 20px;
+p {
     text-align: center;
-}
-
-.abouttext {
-    padding-left: 5%;
-}
-
-.contactwidth {
-    box-sizing: initial;
-    box-sizing: 70%;
 }
 
 staticTxt {
     text-align: left;
-}
-
-.psyball {
-    max-height: 400px;
-    object-fit: cover;
 }

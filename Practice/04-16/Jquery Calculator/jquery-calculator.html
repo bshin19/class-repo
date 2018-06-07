@@ -76,7 +76,103 @@ $(document).ready(function() {
 
 // Your code here...
 
+  var firstNumFull = '';
+  var secondNumFull = '';
+  var calcOperator = '';
+  var opsSelect = false;
+  var finalNum = 0;
+  var firstNumSelect = false;
 
+//functionality 
+//functions for oberations
+//plus
+//minus
+//divide
+//if zero - return false
+  //numbers - record value into variable
+  $(".number").on("click", function () {
+    if (!opsSelect) {
+      firstNumSelect = true;
+      console.log(this.value);
+      var number = (this.value);
+
+      firstNumFull = firstNumFull + number;
+
+      $("#first-number").html(firstNumFull);
+    } else {
+      console.log(opsSelect + "this is the else");
+      console.log(this.value);
+      var number = (this.value);
+
+      secondNumFull += number;
+
+      $("#second-number").html(secondNumFull);
+    }
+  })
+
+  //Displays operator
+  $(".operator").on("click", function () {
+    if (firstNumSelect === false) {
+      return;
+    }
+    opsSelect = true;
+    console.log(firstNumFull);
+    console.log(this.value);
+    calcOperator = (this.value);
+
+    if (calcOperator === "plus") {
+      $("#operator").html("+");
+    } else if (calcOperator === "minus") {
+      $("#operator").html("&minus;");
+    } else if (calcOperator === "times") {
+      $("#operator").html("&times;");
+    } else if (calcOperator === "divide") {
+      $("#operator").html("&divide;");
+    } else if (calcOperator === "power") {
+      $("#operator").html("^");
+    }
+  })
+  
+  $(".equal").on("click", function(){
+    if (firstNumSelect === false && opsSelect === false) {
+      return;
+    }
+    var results = 0;
+    firstNumFull = parseInt(firstNumFull);
+    secondNumFull =  parseInt(secondNumFull);
+    if (calcOperator === "plus") {
+      results = firstNumFull + secondNumFull;
+      $("#result").html(results);
+    } else if (calcOperator === "minus") {
+      results = firstNumFull - secondNumFull;
+      $("#result").html(results);
+    } else if (calcOperator === "times") {
+      results = firstNumFull * secondNumFull;
+      $("#result").html(results);
+    } else if (calcOperator === "divide") {
+      results = firstNumFull / secondNumFull;
+      $("#result").html(results);
+    } else if (calcOperator === "power") {
+      results = Math.pow(firstNumFull, secondNumFull);
+      $("#result").html(results);
+    }
+  });
+
+  $("#button-clear").on("click", function(){
+    if (firstNumSelect === false && opsSelect === false) {
+      return;
+    }
+    $("#first-number").html(" ");
+    $("#operator").html(" ");
+    $("#second-number").html(" ");
+    $("#result").html(" ");
+    firstNumFull = '';
+    secondNumFull = '';
+    calcOperator = '';
+    opsSelect = false;
+    firstNumSelect = false;
+  });
+});
 });
 
 </script>
