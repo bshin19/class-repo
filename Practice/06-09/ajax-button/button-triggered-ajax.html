@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quoth the Giphy</title>
+</head>
+
+<body>
+  <div id="buttons">
+    <button data-person="arnold schwarzenegger">
+      I'll be back
+    </button>
+    <button data-person="michael j fox">
+      My happiness grows in direct proportion to my acceptance,
+      and in inverse proportion to my expectations.
+    </button>
+
+    <!-- STEP ONE: Open this file in the browser and click on the buttons. Watch what happens -->
+
+    <!-- STEP TWO: between the dashed lines below
+            * add three more buttons
+            * add a data-person attribute of famous people you know
+            * with a quote said by them -->
+
+    <!-- **************************************** -->
+
+    <button data-person="albert einstein">
+      Imagination is more important than knowledge.
+    </button>
+
+    <button data-person="theodore roosevelt">
+      Nobody cares how much you know, until they know how much you care.
+    </button>
+
+    <button data-person="martin luther king jr.">
+      Darkness cannot drive out darkness; only light can do that. 
+      Hate cannot drive out hate; only love can do that.
+    </button>
+
+    <!-- **************************************** -->
+
+    <!-- STEP THREE: open this file in the browser and click on your buttons. If they don't work, then fix your buttons -->
+
+    <!-- STEP FOUR: go over the JavaScript with your partners, and explain the lines of code to each other. -->
+
+  </div>
+
+  <div id="gifs-appear-here">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    //Set a listener for whenever any element with the button tag is clicked
+    $("button").on("click", function() {
+
+      //Initialize person var with the data-person attr assigned in button assignment
+      var person = $(this).attr("data-person");
+
+      //Initialize queryURL with the initial API, append the person string just declared, and add API key
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        person + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+      //Ajax call using queryURL as url with method "GET"
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        //after the response is given, run a function that uses response
+        .then(function(response) {
+
+          //results gets the response data array
+          var results = response.data;
+
+          //For each result given in response.data, do something
+          for (var i = 0; i < results.length; i++) {
+
+            //Initialize a local gifDiv with class of item
+            var gifDiv = $("<div class='item'>");
+
+            //initialize local rating which gets the rating response of response.data[i]
+            var rating = results[i].rating;
+
+            //initialize var p with a paragraph tag and add the text of "rating" with rating var added
+            var p = $("<p>").text("Rating: " + rating);
+
+            //initialize personImage as an img tag
+            var personImage = $("<img>");
+
+            //personImage gets the src attribute with response.data[i].imageurl
+            personImage.attr("src", results[i].images.fixed_height.url);
+
+            //the first part of gifDiv gets p (rating info)
+            gifDiv.prepend(p);
+            //gifDiv gets the image prepended, pushing down the p (rating info) below it
+            gifDiv.prepend(personImage);
+
+            //Populate id gifs-appear-here with gifDiv. Newest at the top.
+            $("#gifs-appear-here").prepend(gifDiv);
+          }
+        });
+    });
+  </script>
+</body>
+
+</html>

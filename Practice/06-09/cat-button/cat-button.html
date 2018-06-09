@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Magical Cat Button</title>
+</head>
+
+<body>
+  <button id="cat-button">magical cat button</button>
+  <div id="images">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    //Call a function when the id cat-button is clicked
+    $("#cat-button").on("click", function() {
+
+      //initialize variable queryURL with the api address for random cats
+      //until ? (end point) is the BASE URL. The other half is the query string. API key is part of query string.
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats";
+
+      // Queries the API
+      // Ajax call giving url the queryURL made and using method "GET" to take the info
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+      // Wait for response and then execute function
+      // After the Ajax call successfully grabs the URL do something with the response
+        .then(function(response) {
+
+        //initialize new var imageURL with the response object { data object { image_original_url}}
+        //which is the API response for the image given
+          var imageUrl = response.data.image_original_url;
+
+          //Use Jquery to give an img tag to the new var catImage
+          //Jquery adds closing tag
+          var catImage = $("<img>");
+
+          //the source for the img tag of catImage gets imageUrl
+          //add an alt tag in case the image isn't shown with the message "cat image"
+          catImage.attr("src", imageUrl);
+          catImage.attr("alt", "cat image");
+
+          //the images id will display the most recently pulled cat image at the top via prepend
+          $("#images").prepend(catImage);
+        });
+    });
+  </script>
+</body>
+
+</html>
