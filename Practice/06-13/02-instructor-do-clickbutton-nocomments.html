@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Click Button with Firebase!</title>
+
+  <!-- -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+</head>
+
+<body>
+
+  <!--initialize text section-->
+  <h1>Ouch! You've clicked me
+    <span id="click-value"></span> times!
+  </h1>
+
+  <!--Initialize button to increment value-->
+  <button id="click-button">Click Me!!!!</button>
+
+  <!--Jquery call-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--Firebase API Call ================================================================================== -->
+  <script>
+
+    var config = {
+      apiKey: "AIzaSyAJS4YQWU5DmESeYueG1qH1NGkjv3DncEY",
+      authDomain: "fir-click-counter-7cdb9.firebaseapp.com",
+      databaseURL: "https://fir-click-counter-7cdb9.firebaseio.com",
+      storageBucket: "fir-click-counter-7cdb9.appspot.com"
+    };
+
+    firebase.initializeApp(config);
+
+    // VARIABLES
+    // --------------------------------------------------------------------------------
+
+    //Initialize database using the firebase database
+    var database = firebase.database();
+    //set clickCounter to 0.
+    var clickCounter = 0;
+
+    // FUNCTIONS + EVENTS
+    // --------------------------------------------------------------------------------
+
+    //When id click-button is clicked...
+    $("#click-button").on("click", function() {
+
+      //clickCounter is incremented
+      clickCounter++;
+
+      //database is set to base index without any file paths
+      //search for clickCount parameter and update it with clickCounter's value
+      database.ref().set({
+        clickCount: clickCounter
+      });
+    });
+
+    // MAIN PROCESS + INITIAL CODE
+    // --------------------------------------------------------------------------------
+
+    //When a database value is updated
+    //run a function and place the response in snapshot
+    database.ref().on("value", function(snapshot) {
+      //displays the .val() info of firebase's response
+      console.log(snapshot.val());
+      //Updates the id click-value with firebase's clickCount variable response 
+      $("#click-value").text(snapshot.val().clickCount);
+      //Updates the clickCounter value with firebases clickCount variable response
+      clickCounter = snapshot.val().clickCount;
+      //If there's an error, display an error
+    }, function(errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+  </script>
+
+</body>
+
+</html>
