@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script type=“text/javascript” src=“https://maps.googleapis.com/maps/api/js?key=AIzaSyBWffI4S98URwn_yAiK-P7GZ46k4j8SfL0&libraries=places,geometry“></script>
+</body>
+<!-- jQuery -->
+
+<script>
+
+    $(window).load(function () {
+        // Construct the query string
+        //url = 'https://data.sfgov.org/resource/cuks-n6tp.json?$where=within_circle(location, 37.77, -122.43, 320)datetime > "2017-01-01"'
+
+//url: "https://data.sfgov.org/resource/cuks-n6tp.json?$where=within_circle(location, 37.77, -122.43, 320)&where=date between '2015-01-10T12:00:00' and '2018-01-10T14:00:00'",
+           
+           var queryString = 'Select * where within_circle(location, 37.77, -122.43, 320) and date between "2017-01-10T12:00:00" and "2018-01-10T14:00:00" Limit 10';
+        $.ajax({
+            url: "https://data.sfgov.org/resource/cuks-n6tp.json?$query=" + queryString,
+            //url: "https://data.sfgov.org/resource/cuks-n6tp.json?$where=within_circle(location, 37.77, -122.43, 320)&where=date between '2015-01-10T12:00:00' and '2018-01-10T14:00:00'",
+            
+            type: "GET",
+            data: {
+                //"$limit": 10
+                //"$$app_token": "YOURAPPTOKENHERE"
+            }
+
+        }).done(function (data) {
+            alert("Retrieved " + data.length + " records from the dataset!");
+            console.log(data);
+        });
+
+    // // Intialize our map
+    // var center = new google.maps.LatLng(41.7656874,-72.680087);
+    // var mapOptions = {
+    //   zoom: 8,
+    //   center: center
+    // }
+    // var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+//     // Retrieve our data and plot it
+//     $.getJSON(url, function(data, textstatus) {
+//         console.log(data);
+//           $.each(data, function(i, entry) {
+//               var marker = new google.maps.Marker({
+//                   position: new google.maps.LatLng(entry.location_1.coordinates[1], 
+//                                                    entry.location_1.coordinates[0]),
+//                   map: map,
+//                   title: location.name
+//               });
+//           });
+//     });
+// });
+
+// <!-- 
+// //Calling socrates data
+// url = 'https://data.ct.gov/resource/v4tt-nt9n.json?'
+//       + 'organization_type=Public%20School%20Districts'
+//       + '&$$app_token=09sIcqEhoY0teGY5rhupZGqhW';
+
+// // Intialize our map
+// var center = new google.maps.LatLng(41.7656874,-72.680087);
+// var mapOptions = {
+//   zoom: 8,
+//   center: center
+// }
+// var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+// // Retrieve our data and plot it
+// $.getJSON(url, function(data, textstatus) {
+//       $.each(data, function(i, entry) {
+//         // Deal with our locations
+//       });
+// });
+
+// //create a new marker on the google map
+// var marker = new google.maps.Marker({
+//     position: new google.maps.LatLng(entry.location_1.latitude, 
+//                                      entry.location_1.longitude),
+//     map: map,
+//     title: location.name
+// }); -->
+
+// <!-- 
+
+//     $.ajax({
+//         //tested url 'https://yourmapper2.p.mashape.com/datasetlist?format=json&maxlat=40&maxlon=-70&minlat=30&minlon=-90&num=5&sort=location',
+//         // markers    https://yourmapper2.p.mashape.com/markers?c=1%2C2%2C3&center=1&compact=1&days=30&end=2012-12-31&f=json&id=180&lat=38.2559&lon=-85.514&num=5&radius=1&search=smith&start=2012-01-01
+//         // works markerinfo https://yourmapper2.p.mashape.com/markerinfo?dist=3.42&format=json&id=210299001492&set=161
+
+//         //url: 'https://yourmapper2.p.mashape.com/markerinfo?dist=3.42&format=json&id=210299001492&set=161',
+//         url: 'https://yourmapper2.p.mashape.com/markers?c=1%2C2%2C3&center=1&compact=1&days=30&end=2012-12-31&f=json&id=180&lat=38.2559&lon=-85.514&num=5&radius=1&search=crime',
+//         //url: 'https://yourmapper2.p.mashape.com/datasetlist?format=json&maxlat=40&maxlon=-70&minlat=30&minlon=-90&num=5&sort=location',
+//         //dataType: "json",
+//         //contentType: "application/json",
+//         beforeSend: function (xhr) {
+//                 xhr.setRequestHeader("X-Mashape-Key", "D1tfVXsf6ymshtQKlisS2WR2eJYep1J8HRLjsnZ5WgYZaqKS8m")
+//                 //xhr.setRequestHeader("Accept", "application/json")
+//                 //xhr.setRequestHeader("contentType", "application/json")
+//                 //xhr.setRequestHeader("dataType", "json")
+//         },
+//         success: function (data) {
+//             //alert(data);
+
+//             console.log(data)
+
+//             // for (var i = 0; i < data.items.length; i++){
+//             //     console.log(data.items[i]);
+//             // }
+
+//             //console.log(data.items[0]);
+//             //process the JSON data etc
+//          -->
+//     }
+})
+// });
+</script>
+
+</html>

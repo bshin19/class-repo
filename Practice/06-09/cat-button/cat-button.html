@@ -13,7 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     //Call a function when the id cat-button is clicked
-    $("#cat-button").on("click", function() {
+    $("#cat-button").on("click", function () {
 
       //initialize variable queryURL with the api address for random cats
       //until ? (end point) is the BASE URL. The other half is the query string. API key is part of query string.
@@ -26,12 +26,14 @@
         method: "GET"
       })
 
-      // Wait for response and then execute function
-      // After the Ajax call successfully grabs the URL do something with the response
-        .then(function(response) {
+        // Wait for response and then execute function
+        // After the Ajax call successfully grabs the URL do something with the response
+        .then(function (response) {
 
-        //initialize new var imageURL with the response object { data object { image_original_url}}
-        //which is the API response for the image given
+          console.log(response);
+
+          //initialize new var imageURL with the response object { data object { image_original_url}}
+          //which is the API response for the image given
           var imageUrl = response.data.image_original_url;
 
           //Use Jquery to give an img tag to the new var catImage
@@ -51,3 +53,55 @@
 </body>
 
 </html>
+
+//Calls the searchCrimeAPI with the searched location as center point.
+        searchCrimeAPI(place.geometry.location.lat(),place.geometry.location.lng())
+
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+  }
+
+  initAutocomplete();
+
+  //Called when the search by area button is clicked. Searches by location
+  //and uses default types of bar and restaurant
+  function searchByArea() {
+    var request = {
+      location: pos,
+      radius: '500',
+      type: ['bar', 'restaurant']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+
+  };
+
+  function searchCrimeAPI(lat, long) {
+    var queryString = 'Select * where within_circle(location,' + lat + "," + long + ', 3200) and date between "2017-06-10T12:00:00" and "2018-06-10T14:00:00" Limit 10';
+
+    $.ajax({
+      url: "https://data.sfgov.org/resource/cuks-n6tp.json?$query=" + queryString,
+      type: "GET",
+      data: {
+        //"$$app_token": "YOURAPPTOKENHERE"
+      }
+    }).done(function (data) {
+      console.log(data);
+    });
+  };
