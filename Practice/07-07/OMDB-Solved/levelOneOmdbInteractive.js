@@ -14,7 +14,15 @@ var request = require("request");
 var movieName = process.argv[2];
 
 // Then run a request to the OMDB API with the movie specified
+//This can also be set up as an object
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+
+/*ex) let options = {
+  url: "blahblahblah"
+  data: "&y=...."
+  etc: ....
+}
+*/
 
 // This line is just to help us debug against the actual URL.
 console.log(queryUrl);

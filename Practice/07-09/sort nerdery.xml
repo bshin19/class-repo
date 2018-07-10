@@ -1,0 +1,11 @@
+If you want to nerd out on why the callback function for Array.sort() uses a - b, check out the sort documentation:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+And also the list of unicode characters on Wikipedia:
+https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin
+
+The callback function for the sort method asks “Should b be ahead of a?” and requires a boolean (true/false) to be returned;
+Since larger numbers have higher unicode values (see Wikipedia list), when 10 - 9 would equal 1, and therefore return true.
+In cases where a is less than b (9 - 13 = -4, therefore false) it will return false.
+
+We’ll cover specific sorting algorithms later in the course.
