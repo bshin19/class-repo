@@ -1,0 +1,13 @@
+# NOTES 07/28
+
+## Empty box
+How does an empty box represent a server?
++ Servers can be represented as hardware boxes with modules of server-side code contained inside
++ Servers typically contain code for tasks such as listening, partsing urls, route handling, and more
+
+## What Is **Express**?
++ A fast, uhopinionated minimalist web framework for node.js
+  * Unopinionated means doesn't follow a strict schema.
++ Makes creating a framework for servers much simpler.
+
+## What is a **Route**?

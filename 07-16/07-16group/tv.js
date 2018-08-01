@@ -1,42 +1,46 @@
-//Install the `request` package by running `npm install request` in your terminal. 
-//We will use the `request` module to make AJAX requests to the TV Maze API. 
-//Require the `request` package and the built-in `fs` package at the top of the `tv.js` file.
-var request = require('request');
-
+var request = require("request"), fs = require("fs");
 var TV = function() {
-  this.findShow = function(show) {
-    //* Inside of the `TV` constructor function's `findShow` method, use the `request` package to 
-    //hit the TV Maze API for the `URL` string. 
-    // The following URL can be used to search the TV Maze API for a given show
+  this.findShow = show => {
     var URL = "http://api.tvmaze.com/singlesearch/shows?q=" + show;
     request(URL, function(error, response, body) {
       if (!error && response.statusCode === 200) {
-          
-        // Parse the body of the site and recover just the imdbRating
-        // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
         var mov = JSON.parse(body);
-
-          // * Title of the movie.
-          console.log(mov.Title);
-          // * Year the movie came out.
-          console.log("Release Year: " + mov.Year);
-          // * IMDB Rating of the movie.
-          console.log("IMDB's rating: " + mov.imdbRating);
-          // * Rotten Tomatoes Rating of the movie.
-          console.log("Rotten Tomatoes' Rating: " + mov.Ratings[0].Value);
-          // * Country where the movie was produced.
-          console.log("Proudly produced in the " + mov.Country);
-          // * Language of the movie.
-          console.log("Available in these languages: " + mov.Language);
-          // * Plot of the movie.
-          console.log(mov.Plot);
-          // * Actors in the movie.
-          console.log(mov.Actors);
-
+        let logs = "Name: " + mov.name + "\nGenre(s): " + mov.genres + "\nRating: " + mov.rating.average + "\nNetwork: " + mov.network.name + "\nSummary: " + mov.summary + "\n\n"
+        fs.appendFile("log.txt", logs, function(err) {
+          if (err) throw err;
+        });
+        console.log(logs)
       };
     });
-
   };
+  this.findActor = function(actor) {
+    //test
+    //this.searchFunction("search", "people", actor, act[0].person.name , "\nBirthday: ", act[0].person.birthday , "\nGender: " , act[0].person.gender , "\nCountry of Birth: ", act[0].person.country.name , "\nURL: ", act[0].person.url)
+    
+    var URL = "http://api.tvmaze.com/search/people?q=" + actor
+    request(URL, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+        var act = JSON.parse(body);
+        let logs = "Name: " + act[0].person.name + "\nBirthday: " + act[0].person.birthday + "\nGender: " + act[0].person.gender + "\nCountry of Birth: " + act[0].person.country.name + "\nURL: " + act[0].person.url + "\n\n"
+        fs.appendFile("log.txt", logs, function(err) {
+          if (err) throw err;
+        });
+        console.log(logs)
+      };
+    });
+  };
+  this.searchFunction = function(search, queryType, query, log1Val, log2, log2Val, log3, log3Val, log4, log4Val, log5, log5Val) {
+    var URL = "http://api.tvmaze.com/" + search + "/" + queryType + "?q=" + query;
+    request(URL, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+        var movAct = JSON.parse(body);
+        let logs = "Name: " + log1Val + log2 + log2Val + log3 + log3Val + log4 + log4Val + log5 + log5Val + "\n\n"
+        fs.appendFile("log.txt", logs, function(err) {
+          if (err) throw err;
+        });
+        console.log(logs)
+      };
+    });
+  }
 };
-
 module.exports = TV;
