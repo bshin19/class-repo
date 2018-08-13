@@ -1,0 +1,46 @@
+# 08-01 NOTES
+
+## Class Objectives
++ Send MySQL data from the backend to the front-end.
++ Semantic templating using Handlebars.
++ Basic syntax for Handlebars-based web apps.
++ Create an Express connection to a front-end application which prints data to the screen using Handlebars.
+
+## Test
+GET, DELETE, POST, and PUT are the most common HTTP Request Methods
++ Get is for retrieving data.
++ Delete is for deleting data.
++ Post is for creating data.
++ Put is for updating data.
+
+## Express Calculator
+
+Star wars activity 3 from 7/28 is a useful tool to begin with.
+
+## Express Calculator Breakdown
+
++ process.env.PORT || 8080; : dynamically selects port incase port is already in use.
++ var app = express(); : app uses express.
++ app.get("/:operation/:firstNum/:secondNum", function(req, res) { : ":parameter" are parameters in the *route*
+
+## Handlebars
++ handlebarsjs.com
+A handlebars expression is a {{, some contents, followed by a }} \
+package: express-handlebars \
+
+MVC - model view controller \
+
+{{{ body }}} will become whatever is desired through handlebars.
+
+res.render("index", lunches[0])
+
++ # = starting section in helper
++ / = ending section in helper
+
+#each can be shorthanded to #list and ended with /list instead of /each. \
+
++ ^ = false
+
+## MVC Framework
+Consists of Models, Views, and Controllers folders.
+

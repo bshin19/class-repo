@@ -1,4 +1,14 @@
-# NOTES 07/28
+# NOTES 07/28 Express Yourself
+
+## Difference between Express.js and typical routing?
+!Important \
+
+## Goals:
++ Know how to create a generic Express server
++ Know how to create a basic Express GET route
++ Know how to create an Express POST route
++ Know what Postman is for
++ Conceptually understand how this all works.
 
 ## Empty box
 How does an empty box represent a server?
@@ -22,3 +32,8 @@ When the user visits a root, it's a server GET request.
 A get expects somethng back from the server. \
 A post expects to get something from the user to return to the server. \
 
+## Express parameters
++ Optional routes can be set and variable routes can be set.
+  * Optional: /var?
+  * Variable: /:var
+  
