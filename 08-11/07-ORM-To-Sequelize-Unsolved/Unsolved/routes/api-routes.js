@@ -28,7 +28,7 @@ module.exports = function(app) {
     console.log(req.body);
     db.create({
 
-    }), function(results) {
+    }, function(results) {
       res.json(results);
     });
   });

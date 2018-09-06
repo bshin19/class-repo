@@ -24,6 +24,7 @@ module.exports = function (app) {
 
   // POST route for saving a new todo. We can create todo with the data in req.body
   app.post("/api/todos", function (req, res) {
+    console.log("This is probably not the right place.")
     db.Todo.create({
       text: req.body.text,
       complete: req.body.complete
@@ -49,6 +50,7 @@ module.exports = function (app) {
 
   // PUT route for updating todos. We can get the updated todo data from req.body
   app.put("/api/todos", function (req, res) {
+    console.log("I got here");
     db.Todo.update({
       text: req.body.text,
       complete: req.body.complete
