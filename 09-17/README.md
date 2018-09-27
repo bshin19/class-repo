@@ -32,3 +32,21 @@
 {this.state.xxxx.xxxx ? ( ...statement1... ) : ( ... else...)
 
 + yarn add react-router-dom
+
+## ArrayList vs HashMap vs Set
+
+#### Set
+Sets contain no duplicate elements
+All constructors must create a set that has no duplicate elements
+
+#### HashMap
+unsynchronized and permits nulls
+When a HashMap's data cap is reached, it rehashes and doubles in size
+Like a JS object in a way
+Doesn't allow for duplicate keys but allows for duplicate values
+Hashmap keeps track of association when adding
+key and value must be removed to clear
+
+#### ArrayList
+Elements can be duplicates
+adding adds to last
